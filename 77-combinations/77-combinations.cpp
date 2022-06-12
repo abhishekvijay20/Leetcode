@@ -1,22 +1,26 @@
 class Solution {
-private:
-    void helper(vector<vector<int>>& ans, vector<int> v, int k, int n, int ind) {
-        if (v.size() == k) {
-            ans.push_back(v);
+public:
+    vector<vector<int>> ans;
+    
+    void helper(int idx, int k,vector<int>&current,int n)
+    {
+        if(current.size()==k)    // base case
+        {
+            ans.push_back(current);
             return;
         }
         
-        for (int i=ind; i<n; i++) {
-            v.push_back(i+1);
-            helper(ans, v, k, n, i+1);
-            v.pop_back();
+        for(int i=idx;i<n+1;i++)
+        {
+            current.push_back(i);  //consider the current element i
+            helper(i+1,k,current,n); // generate combinations
+            current.pop_back(); //proceed to next element
         }
     }
-public:
+    
     vector<vector<int>> combine(int n, int k) {
-        vector<vector<int>> ans;
-        vector<int> v;
-        helper(ans, v, k, n, 0);
-        return ans;
+        vector<int>current;
+        helper(1,k,current,n);
+        return ans; //return answer
     }
 };
