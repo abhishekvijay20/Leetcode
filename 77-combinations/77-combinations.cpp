@@ -1,5 +1,5 @@
 class Solution {
-private:
+public:
     vector<vector<int>> ans;
     
     void helper(vector<int> v, int k, int n, int ind) {
@@ -8,16 +8,16 @@ private:
             return;
         }
         
-        for (int i=ind; i<n+1; i++) {
-            v.push_back(i);
+        for (int i=ind; i<n; i++) {
+            v.push_back(i+1);
             helper(v, k, n, i+1);
             v.pop_back();
         }
     }
-public:
+// public:
     vector<vector<int>> combine(int n, int k) {
         vector<int> v;
-        helper(v, k, n, 1);
+        helper(v, k, n, 0);
         return ans;
     }
 };
