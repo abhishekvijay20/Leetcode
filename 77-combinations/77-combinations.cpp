@@ -8,8 +8,8 @@ private:
             return;
         }
         
-        for (int i=ind; i<n; i++) {
-            v.push_back(i+1);
+        for (int i=ind; i<n+1; i++) {
+            v.push_back(i);
             helper(v, k, n, i+1);
             v.pop_back();
         }
@@ -17,7 +17,7 @@ private:
 public:
     vector<vector<int>> combine(int n, int k) {
         vector<int> v;
-        helper(v, k, n, 0);
+        helper(v, k, n, 1);
         return ans;
     }
 };
