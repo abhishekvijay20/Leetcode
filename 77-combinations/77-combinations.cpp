@@ -1,8 +1,6 @@
 class Solution {
-public:
-    vector<vector<int>> ans;
-    
-    void helper(vector<int> v, int k, int n, int ind) {
+private:
+    void helper(vector<vector<int>>& ans, vector<int>& v, int k, int n, int ind) {
         if (v.size() == k) {
             ans.push_back(v);
             return;
@@ -10,14 +8,15 @@ public:
         
         for (int i=ind; i<n; i++) {
             v.push_back(i+1);
-            helper(v, k, n, i+1);
+            helper(ans, v, k, n, i+1);
             v.pop_back();
         }
     }
-// public:
+public:
     vector<vector<int>> combine(int n, int k) {
+        vector<vector<int>> ans;
         vector<int> v;
-        helper(v, k, n, 0);
+        helper(ans, v, k, n, 0);
         return ans;
     }
 };
