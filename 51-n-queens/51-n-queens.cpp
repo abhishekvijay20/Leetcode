@@ -45,13 +45,11 @@ private:
     void helper(vector<vector<string>>& ans, vector<string>& v, int n, int i) {
         if (i >= n) {
             ans.push_back(v);
-            //cout << "pushed" << endl;
             return;
         }
         
         for (int j=0; j<n; j++) {
             if (isValid(v, i, j, n)) {
-                //cout << isValid(v, i, j, n) << endl;
                 v[i][j] = 'Q';
                 helper(ans, v, n, i+1);
                 v[i][j] = '.';
