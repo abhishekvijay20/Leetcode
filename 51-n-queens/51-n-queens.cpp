@@ -1,44 +1,23 @@
 class Solution {
 private:
     bool isValid(vector<string>& v, int r, int c, int n) {
-        int i = 0, j = 0;
-        while (i < n) {
+        int i = r, j = c;
+        while (i >= 0) {
             if (i != r && v[i][c] == 'Q') return false; 
-            i++;
-        }
-        while (j < n) {
-            if (j != c && v[r][j] == 'Q') return false;
-            j++;
-        }
-        i = r;
-        j = c;
-        while (i >= 0 && j >= 0) {
-            if (i != r && j != c && v[i][j] == 'Q') return false;
             i--;
-            j--;
         }
-        i = r;
-        j = c;
-        while (i <n && j < n) {
-            if (i != r && j != c && v[i][j] == 'Q') return false;
-            i++;
-            j++;
-        }
-        i = r;
-        j = c;
+        i = r, j = c;
         while (i >= 0 && j < n) {
             if (i != r && j != c && v[i][j] == 'Q') return false;
             i--;
             j++;
         }
-        i = r;
-        j = c;
-        while (i < n && j >= 0) {
+        i = r, j = c;
+        while (i >= 0 && j >= 0) {
             if (i != r && j != c && v[i][j] == 'Q') return false;
-            i++;
+            i--;
             j--;
         }
-        
         return true;
     }
     
