@@ -8,9 +8,6 @@ private:
 public:
     int climbStairs(int n) {
         vector<int> dp(n+1, -1);
-        for (int i=0; i<dp.size(); i++){
-            cout << dp[i] << " ";
-        }
         return helper(n, dp);
     }
 };
