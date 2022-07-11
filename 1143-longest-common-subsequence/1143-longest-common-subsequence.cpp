@@ -1,18 +1,18 @@
 class Solution {
-private: 
-    int helper (string& s1, string& s2, int idx1, int idx2, vector<vector<int>>& dp) {
-        if (idx1 < 0 || idx2 < 0) return 0;
-        if (dp[idx1][idx2] != -1) return dp[idx1][idx2];
-        
-        if (s1[idx1] == s2[idx2]) {
-            return dp[idx1][idx2] = 1 + helper (s1, s2, idx1-1, idx2-1, dp);
-        } else {
-            return dp[idx1][idx2] = max(helper(s1, s2, idx1, idx2-1, dp), helper(s1, s2, idx1-1, idx2, dp));
-        }
-    }
 public:
     int longestCommonSubsequence(string text1, string text2) {
-        vector<vector<int>> dp(text1.size(), vector<int>(text2.size(), -1));
-        return helper (text1, text2, text1.size()-1, text2.size()-1, dp);
+        int n = text1.size(); int m = text2.size();
+        vector<vector<int>> dp(n+1, vector<int>(m+1, 0));
+        
+        for (int i=1; i<=n; i++) {
+            for (int j=1; j<=m; j++) {
+                if (text1[i-1] == text2[j-1]) {
+                    dp[i][j] = 1 + dp[i-1][j-1];
+                } else {
+                    dp[i][j] = max (dp[i][j-1], dp[i-1][j]);
+                }
+            }
+        }
+        return dp[n][m];
     }
 };
