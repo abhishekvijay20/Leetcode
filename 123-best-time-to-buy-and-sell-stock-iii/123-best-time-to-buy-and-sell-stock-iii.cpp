@@ -1,17 +1,19 @@
 class Solution {
+private:
+    int helper (vector<int>& prices, int idx, int buy, int cap, vector<vector<vector<int>>>& dp) {
+        if (idx == prices.size() || cap == 0) return 0;
+        if (dp[idx][buy][cap] != -1) return dp[idx][buy][cap];
+        
+        if (buy == 1) {
+            return dp[idx][buy][cap] = max(-prices[idx] + helper(prices, idx+1, 0, cap, dp), helper(prices, idx+1, 1, cap, dp));
+        } else {
+            return dp[idx][buy][cap] = max(prices[idx] + helper (prices, idx+1, 1, cap-1, dp), helper(prices, idx+1, 0, cap, dp));
+        }
+    }
 public:
     int maxProfit(vector<int>& prices) {
         int n = prices.size();
-        int ans1 = INT_MIN;
-        int minSoFar1 = INT_MAX;
-        int ans2 = INT_MIN;
-        int minSoFar2 = INT_MAX;
-        for (int i=0; i<n; i++) {
-            minSoFar1 = min(minSoFar1, prices[i]);
-            ans1 = max(ans1, prices[i]-minSoFar1);
-            minSoFar2 = min(minSoFar2, prices[i]-ans1);
-            ans2 = max(ans2, prices[i]-minSoFar2);
-        }
-        return ans2;
+        vector<vector<vector<int>>> dp(n+1, vector<vector<int>>(2, vector<int>(3, -1)));
+        return helper (prices, 0, 1, 2, dp);
     }
 };
