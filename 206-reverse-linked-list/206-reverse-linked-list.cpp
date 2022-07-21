@@ -9,24 +9,17 @@
  * };
  */
 class Solution {
-private:
-    pair<ListNode*, ListNode*> helper (ListNode* head, ListNode* tail) {
-        if (head == tail) return {head, tail};
-        
-        pair<ListNode*, ListNode*> smallAns = helper(head->next, tail);
-        smallAns.second->next = head;
-        head->next = NULL;
-        smallAns.second = smallAns.second->next;
-        return smallAns;
-    }
 public:
     ListNode* reverseList(ListNode* head) {
-        if (head == NULL) return head;
-        ListNode* temp = head;
-        while (temp->next != NULL) {
-            temp = temp->next;
+        if (head == NULL) return NULL;
+        ListNode *p = NULL, *c = head, *n = head->next;
+        
+        while (c != NULL) {
+            c->next = p;
+            p = c;
+            c = n;
+            if (n != NULL) n = n->next;
         }
-        pair<ListNode*, ListNode*> ans = helper (head, temp);
-        return ans.first;
+        return p;
     }
 };
