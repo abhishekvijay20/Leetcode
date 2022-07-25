@@ -6,36 +6,22 @@ public:
         int i=0, j=n-1;
         while (i+1 < j) {
             int mid = (i+j)/2;
-            if (nums[mid] >= target) {
-                j = mid;
-            } else {
-                i = mid;
-            }
+            if (nums[mid] >= target) j = mid;
+            else i = mid;
         }
         
-        if (nums[i] == target) {
-            l = i;
-        } else if (nums[j] == target) {
-            l = j;     
-        }
-        cout << "left " << l << endl;
-        
+        if (nums[i] == target) l = i;
+        else if (nums[j] == target) l = j;
+
         i = 0, j = n-1;
         while (i+1 < j) {
             int mid = (i+j)/2;
-            if (nums[mid] <= target) {
-                i = mid;
-            } else {
-                j = mid;
-            }
+            if (nums[mid] <= target) i = mid;
+            else j = mid;
         }
         
-        if (nums[j] == target) {
-            r = j;
-        } else if (nums[i] == target) {
-            r = i;     
-        }
-        cout << "right " << r << endl;
+        if (nums[j] == target) r = j;
+        else if (nums[i] == target) r = i;     
         
         return {l, r};
     }
