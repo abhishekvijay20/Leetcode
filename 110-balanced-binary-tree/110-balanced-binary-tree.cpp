@@ -11,17 +11,18 @@
  */
 class Solution {
 private:
-    pair<bool, int> height(TreeNode* root) {
-        if (root == NULL) return {true, 0};
+    int height(TreeNode* root) {
+        if (root == NULL) return 0;
         
-        pair<bool, int> l = height(root->left);
-        pair<bool, int> r = height(root->right);
+        int l = height(root->left);
+        int r = height(root->right);
         
-        if (l.first && r.first && abs(l.second - r.second) <= 1) return {true, 1 + max(l.second, r.second)};
-        return {false, 1 + max(l.second, r.second)};
+        if (l == -1 || r == -1) return -1;
+        if (abs(l-r) > 1) return -1;
+        return 1 + max(l, r);
     }
 public:
     bool isBalanced(TreeNode* root) {
-        return height(root).first;
+        return height(root) != -1;
     }
 };
