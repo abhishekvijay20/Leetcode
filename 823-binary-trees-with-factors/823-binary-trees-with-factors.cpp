@@ -16,11 +16,11 @@ public:
                     }
                 }
             }
-            m[arr[i]] += cnt % mod;
+            m[arr[i]] += cnt;
         }
         
         long long ans = 0;
-        for (auto it: m) ans += it.second % mod;
+        for (auto it: m) ans += it.second;
         return ans % mod;
     }
 };
