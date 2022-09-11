@@ -9,7 +9,7 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        set<ListNode*> address;
+        unordered_set<ListNode*> address;
         ListNode* temp = head;
         while (temp) {
             if (address.find(temp) != address.end()) return true;
